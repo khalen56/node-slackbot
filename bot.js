@@ -70,7 +70,9 @@ app.listen(process.env.PORT, function () {
 });
 
 bot.on('ready', () => {
-	sendGlobalMessage("Salut bande de batards !");
+	if(process.env.WELCOME_MESSAGE){
+		sendGlobalMessage(process.env.WELCOME_MESSAGE);
+	}
 });
 
 bot.on('message', (message) => {
