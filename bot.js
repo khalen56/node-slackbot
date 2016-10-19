@@ -10,19 +10,22 @@ require('dotenv').config({path: `${__dirname}/.env`});
 // needed packages
 
 // express, used for the api
-const express    			= require('express');
-const app        			= express();
+const express					= require('express');
+const app							= express();
 
 // bodyparser, used for parsing json body
-const bodyParser 			= require('body-parser');
+const bodyParser			= require('body-parser');
 
 // setting port
-const port       			= process.env.PORT || 8080;
+const port						= process.env.PORT || 8080;
 
 // filesystem module
 const fs							= require('fs');
 
-global.hello = {}
+// Discord Bot
+const bot = new (require('discord.js')).Client();
+
+global.hello = {};
 
 try {
 	global.hello = JSON.parse(fs.readFileSync(`${__dirname}/.config/hello.json`).toString());
@@ -63,5 +66,45 @@ app.use('/answers', require('./controllers/answers'));
 app.use('/mentions', require('./controllers/mentions'));
 
 app.listen(process.env.PORT, function () {
-  console.log("Magic happens on port", process.env.PORT);
+	console.log("Magic happens on port", process.env.PORT);
 });
+
+bot.on('ready', () => {
+	bot.channels
+		.filter(channel => channel.type === 'text')
+		.forEach(channel => channel.sendMessage("Salut bande de batards !"));
+});
+
+bot.on('message', (message) => {
+	if(message.author.bot){
+		return;
+	}
+
+	let match;
+	const content = message.cleanContent.toLowerCase();
+	const sContent = content.split(' ');
+
+	const helloMatch = global.hello.triggers.indexOf(sContent) > -1;
+
+	const answersMatch = helloMatch || Object.keys(global.answers).indexOf(sContent) > -1;
+
+	const mentionsMatch = answersMatch || content.indexOf('@slackbot') > -1;
+
+	if(helloMatch){
+		const a = global.hello.answers;
+		message.reply(a[Math.floor(Math.random() * a.length)]);
+		console.log(`Replied to hello ${content}`);
+	} else if (answersMatch){
+		message.reply(global.answers[answersMatch]);
+		console.log(`Replied to answers ${content}`);
+	} else if(mentionsMatch) {
+		const m = global.mentions;
+		message.reply(m[Math.floor(Math.random() * m.length)]);
+		console.log(`Replied to mention ${content}`);
+	} else {
+		console.log(`Nothing matches "${content}"`);
+	}
+
+});
+
+bot.login(process.env.TOKEN);
