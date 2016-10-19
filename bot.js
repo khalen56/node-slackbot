@@ -78,18 +78,16 @@ bot.on('message', (message) => {
 		return;
 	}
 
-	let match;
 	const content = message.cleanContent.toLowerCase();
-	const sContent = content.split(' ');
 
 	const helloMatch = global.hello.triggers.find(trigger => {
-		const t = trigger.toLowerCase();
-		return sContent.find(c => t === c);
+		const regex = new RexExp(`(^|\s)${trigger}($|\s)`, 'gi');
+		return content.match(regex);
 	});
 
 	const answersMatch = helloMatch || Object.keys(global.answers).find(trigger => {
-		const t = trigger.toLowerCase();
-		return sContent.find(c => t === c);
+		const regex = new RexExp(`(^|\s)${trigger}($|\s)`, 'gi');
+		return content.match(regex);
 	});
 
 	const mentionsMatch = answersMatch || content.indexOf('@slackbot') > -1;
