@@ -1,16 +1,16 @@
 {
 	"triggers": [
-		"Bonjour",
-		"Salut",
-		"Hey",
-		"Plop",
-		"Coucou",
-		"Cc",
-		"Yop",
-		"Yo",
-		"Wesh",
-		"Wsh",
-		"Hello"
+		"bonjour",
+		"salut",
+		"hey",
+		"plop",
+		"coucou",
+		"cc",
+		"yop",
+		"yo",
+		"wesh",
+		"wsh",
+		"hello"
 	],
 	"answers": [
 		"Salut",
