@@ -1,0 +1,30 @@
+{
+	"triggers": [
+		"Bonjour",
+		"Salut",
+		"Hey",
+		"Plop",
+		"Coucou",
+		"Cc",
+		"Yop",
+		"Yo",
+		"Wesh",
+		"Wsh",
+		"Hello"
+	],
+	"answers": [
+		"Salut",
+		"Bonjour",
+		"Yo yo yo",
+		"Plop",
+		"Hi !",
+		"Hey !",
+		"Cc",
+		"Coucou",
+		"Hello",
+		"Tg",
+		"Wesh",
+		"Wsh",
+		"Yo tout le monde c'est Squeezie !"
+	]
+}
