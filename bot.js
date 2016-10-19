@@ -81,12 +81,12 @@ bot.on('message', (message) => {
 	const content = message.cleanContent.toLowerCase();
 
 	const helloMatch = global.hello.triggers.find(trigger => {
-		const regex = new RegExp(`(^|\s)${trigger}($|\s)`, 'gi');
+		const regex = new RegExp(`(^|\\\s)${trigger}($|\\\s)`, 'gi');
 		return content.match(regex);
 	});
 
 	const answersMatch = helloMatch || Object.keys(global.answers).find(trigger => {
-		const regex = new RegExp(`(^|\s)${trigger}($|\s)`, 'gi');
+		const regex = new RegExp(`(^|\\\s)${trigger}($|\\\s)`, 'gi');
 		return content.match(regex);
 	});
 
