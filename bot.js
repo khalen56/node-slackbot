@@ -59,7 +59,7 @@ app.get('/hello', (req, res) => {
 });
 
 app.get('/answers', (req, res) => {
-	res.json({msg: "Je te file me sréponses et tu me laisses tranquille, ok ?", result: answers});
+	res.json({msg: "Je te file mes réponses et tu me laisses tranquille, ok ?", result: answers});
 });
 
 app.get('/mentions', (req, res) => {
