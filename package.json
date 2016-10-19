@@ -12,6 +12,7 @@
     "url": "git+ssh://git@github.com/GLedoussal/node-slackbot.git"
   },
   "author": "Gwendal LE DOUSSAL",
+  "contributors":[ "BlackYoup <a.lefebvre@outlook.fr" ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/GLedoussal/node-slackbot/issues"
