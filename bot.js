@@ -84,9 +84,9 @@ bot.on('message', (message) => {
 	const content = message.cleanContent.toLowerCase();
 	const sContent = content.split(' ');
 
-	const helloMatch = global.hello.triggers.indexOf(sContent) > -1;
+	const helloMatch = global.hello.triggers.find(t => t.toLowerCase() === content);
 
-	const answersMatch = helloMatch || Object.keys(global.answers).indexOf(sContent) > -1;
+	const answersMatch = helloMatch || Object.keys(global.answers).find(t => t.toLowerCase() === content);
 
 	const mentionsMatch = answersMatch || content.indexOf('@slackbot') > -1;
 
