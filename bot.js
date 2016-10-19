@@ -2,7 +2,7 @@
 'use strict';
 
 // Loading env configuration
-require('dotenv').config({path: __dirname + '/.env'});
+require('dotenv').config({path: `${__dirname}/.env`});
 
 // BASE SETUP
 // =============================================================================
@@ -25,7 +25,7 @@ const fs							= require('fs');
 global.hello = {}
 
 try {
-	global.hello = JSON.parse(fs.readFileSync(__dirname + '/.config/hello.json').toString());
+	global.hello = JSON.parse(fs.readFileSync(`${__dirname}/.config/hello.json`).toString());
 } catch(e) {
 	console.log(e);
 	global.hello = {};
@@ -34,7 +34,7 @@ try {
 global.answers = {};
 
 try {
-	global.answers = JSON.parse(fs.readFileSync(__dirname + '/.config/answers.json').toString());
+	global.answers = JSON.parse(fs.readFileSync(`${__dirname}/.config/answers.json`).toString());
 } catch(e) {
 	global.answers = {};
 }
@@ -43,7 +43,7 @@ try {
 global.mentions = [];
 
 try {
-	global.mentions = JSON.parse(fs.readFileSync(__dirname + '/.config/mentions.json').toString());
+	global.mentions = JSON.parse(fs.readFileSync(`${__dirname}/.config/mentions.json`).toString());
 } catch(e) {
 	global.mentions = [];
 }
@@ -63,5 +63,5 @@ app.use('/answers', require('./controllers/answers'));
 app.use('/mentions', require('./controllers/mentions'));
 
 app.listen(process.env.PORT, function () {
-  console.log("Magic happens on port " + process.env.PORT);
+  console.log("Magic happens on port", process.env.PORT);
 });
