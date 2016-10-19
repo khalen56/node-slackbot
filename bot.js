@@ -70,9 +70,7 @@ app.listen(process.env.PORT, function () {
 });
 
 bot.on('ready', () => {
-	bot.channels
-		.filter(channel => channel.type === 'text')
-		.forEach(channel => channel.sendMessage("Salut bande de batards !"));
+	sendGlobalMessage("Salut bande de batards !");
 });
 
 bot.on('message', (message) => {
@@ -114,3 +112,9 @@ bot.on('message', (message) => {
 });
 
 bot.login(process.env.TOKEN);
+
+function sendGlobalMessage(message) {
+	bot.channels
+		.filter(channel => channel.type === 'text')
+		.forEach(channel => channel.sendMessage(message));
+}
