@@ -1,0 +1,25 @@
+{
+  "name": "node-slackbot",
+  "version": "0.0.1",
+  "description": "An unfriendly bot for discord.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/GLedoussal/node-slackbot.git"
+  },
+  "author": "Gwendal LE DOUSSAL",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GLedoussal/node-slackbot/issues"
+  },
+  "homepage": "https://github.com/GLedoussal/node-slackbot#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "discord.js": "^9.3.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0"
+  }
+}
