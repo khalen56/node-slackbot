@@ -31,6 +31,7 @@ router.delete('/:trigger', (req, res) => {
 	try {
 		if (global.answers[req.params.trigger.toLowerCase()]) {
 			delete global.answers[req.params.trigger.toLowerCase()];
+			fs.writeFileSync(__dirname + '/../.config/answers.json', JSON.stringify(global.answers, null, '  '));
 			res.json({msg: "Ok."});
 		} else {
 			res.status(404).json({msg: "Trigger introuvable, pd."});
