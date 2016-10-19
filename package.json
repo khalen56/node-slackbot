@@ -1,6 +1,6 @@
 {
   "name": "node-slackbot",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An unfriendly bot for discord.",
   "main": "bot.js",
   "scripts": {
