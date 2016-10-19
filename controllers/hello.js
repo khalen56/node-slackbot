@@ -19,13 +19,11 @@ router.post('/triggers', (req, res) => {
 			fs.writeFileSync(__dirname + '/../.config/hello.json', JSON.stringify(global.hello, null, '  '));
 			res.json({msg: "Ok."});
 		} else {
-			res.sendStatus(400);
-			res.json({msg: "Mauvaise requête."});
+			res.status(400).json({msg: "Mauvaise requête."});
 		}
 	} catch(e) {
 		console.log(e);
-		res.sendStatus(500);
-		res.json({msg: "Erreur."});
+		res.status(500).json({msg: "Erreur."});
 	}
 });
 
@@ -39,13 +37,44 @@ router.post('/answers', (req, res) => {
 			fs.writeFileSync(__dirname + '/../.config/hello.json', JSON.stringify(global.hello, null, '  '));
 			res.json({msg: "Ok."});
 		} else {
-			res.sendStatus(400);
-			res.json({msg: "Mauvaise requête."});
+			res.status(400).json({msg: "Mauvaise requête."});
 		}
 	} catch(e) {
 		console.log(e);
-		res.sendStatus(500);
-		res.json({msg: "Erreur."})
+		res.status(500).json({msg: "Erreur."});
+	}
+});
+
+router.delete('/triggers/:trigger', (req, res) => {
+	try {
+		const indexOf = global.hello.triggers.indexOf(req.params.trigger)
+		if (indexOf > -1) {
+			global.hello.triggers.splice(indexOf, 1);
+			fs.writeFileSync(__dirname + '/../.config/hello.json', JSON.stringify(global.hello, null, '  '));
+			res.json({msg: "Ok."});
+		} else {
+			res.status(404).json({msg: "Trigger introuvable, pd."});
+		}
+	} catch (e) {
+		console.log(e);
+		res.status(500).json({msg: "Erreur."});
+	}
+});
+
+router.delete('/answers/:answer', (req, res) => {
+	try {
+		const indexOf = global.hello.answers.indexOf(req.params.answer)
+		if (indexOf > -1) {
+			global.hello.answers.splice(indexOf, 1);
+			fs.writeFileSync(__dirname + '/../.config/hello.json', JSON.stringify(global.hello, null, '  '));
+			res.json({msg: "Ok."});
+		} else {
+			console.log(req.params);
+			res.status(404).json({msg: "Answer introuvable, pd."});
+		}
+	} catch (e) {
+		console.log(e);
+		res.status(500).json({msg: "Erreur."});
 	}
 });
 
