@@ -94,6 +94,8 @@ bot.on('message', (message) => {
 
 	const mentionsMatch = answersMatch || content.indexOf('@slackbot') > -1;
 
+	const gifMatch = mentionsMatch || content.match(/https?:\/\/.*\.mp4/);
+
 	if(helloMatch){
 		const a = global.hello.answers;
 		message.reply(a[Math.floor(Math.random() * a.length)]);
@@ -105,6 +107,11 @@ bot.on('message', (message) => {
 		const m = global.mentions;
 		message.reply(m[Math.floor(Math.random() * m.length)]);
 		console.log(`Replied to mention ${content}`);
+	} else if(gifMatch && gifMatch.length > 0){
+		gifMatch.forEach(gif => {
+			message.reply(`${process.env.MP4_TO_GIF_CONVERTOR}${gif}`);
+			console.log(`converted mp4 to gif for ${gif}`);
+		});
 	} else {
 		console.log(`Nothing matches "${content}"`);
 	}
