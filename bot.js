@@ -80,7 +80,7 @@ bot.on('message', (message) => {
 		return;
 	}
 
-	const content = message.cleanContent.toLowerCase();
+	const content = message.cleanContent;
 
 	const helloMatch = global.hello.triggers.find(trigger => {
 		const regex = new RegExp(`(^|\\\s)${trigger}($|\\\s)`, 'gi');
